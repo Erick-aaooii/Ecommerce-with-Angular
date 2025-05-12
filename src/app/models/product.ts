@@ -1,12 +1,20 @@
-export interface Product {
-    id: number
-    name: string
-    description: string
-    price: number
+export interface ProductVariant {
+  color: string // ex: "vermelho", ou um hex "#FF0000"
+  colorHex?: string // opcional, se quiser separar nome da cor da cor visual
+  sizes: {
+    size: 'P' | 'M' | 'G' | 'GG'
     quantity: number
-    status: 'disponível' | 'esgotado' | 'indisponível'
-    category: string
-    brand: string
-    images: string[]
-  }
-  
+  }[]
+}
+
+export interface Product {
+  id: number
+  name: string
+  description: string
+  price: number
+  status: 'disponível' | 'esgotado' | 'indisponível'
+  category: string
+  brand: string
+  images: string[]
+  variants: ProductVariant[]
+}

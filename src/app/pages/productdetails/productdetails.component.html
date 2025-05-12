@@ -1,31 +1,63 @@
-<section class="flex justify-center ">
-    <div class="flex w-full items-center md:justify-evenly flex-col gap-y-4 md:flex-row mt-10">
+<section class="flex justify-center px-4">
+    <div class="flex w-full max-w-6xl items-start gap-10 flex-col md:flex-row mt-10">
+      
+      <div class="w-full md:w-1/2 flex flex-col items-center gap-4">
         @for (item of produto?.images; track $index) {
-            <div>
-                <img [src]="item" alt="" class="w-2xs rounded-4xl">
-            </div>
+          <img [src]="item" alt="Imagem do produto" class="w-full max-w-xs rounded-2xl shadow-md" />
         }
-        <div class="flex flex-col gap-y-4 h-full bg-color3 rounded-4xl px-6 py-3">
-            <h5 class="mt-10 text-3xl text-color4">{{produto?.name}}</h5>
-            <h6>Categoria: {{produto?.category}}</h6>
-            <h6 class="text-color4">Marca: {{produto?.brand}}</h6>
-            <h6>Descrição: {{produto?.description}}</h6>
-            <h6 class="text-color4">cód: {{produto?.id}}</h6>
-            <div class="flex items-center">
-                <h6 class="text-color4">Preço:</h6>
-                <h6 class="text-2xl">{{produto?.price | appRealtransforme }}</h6>
-            </div>
-            <button class="relative inline-flex items-center justify-center overflow-hidden rounded-full bg-color2 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 group">
-                <span class="absolute inset-0 w-0 bg-color1 transition-all duration-300 ease-in-out group-hover:w-full z-0 rounded-full"></span>
-                    <span class="relative z-10 flex items-center gap-2">
-                        Comprar
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
-                            <path fill="#fff" d="M12.32 8a3 3 0 0 0-2-.7H5.63A1.59 1.59 0 0 1 4 5.69a2 2 0 0 1 0-.25a1.59 1.59 0 0 1 1.63-1.33h4.62a1.59 1.59 0 0 1 1.57 1.33h1.5a3.08 3.08 0 0 0-3.07-2.83H8.67V.31H7.42v2.3H5.63a3.08 3.08 0 0 0-3.07 2.83a2 2 0 0 0 0 .25a3.07 3.07 0 0 0 3.07 3.07h4.74A1.59 1.59 0 0 1 12 10.35a2 2 0 0 1 0 .34a1.59 1.59 0 0 1-1.55 1.24h-4.7a1.59 1.59 0 0 1-1.55-1.24H2.69a3.08 3.08 0 0 0 3.06 2.73h1.67v2.27h1.25v-2.27h1.7a3.08 3.08 0 0 0 3.06-2.73v-.34A3.06 3.06 0 0 0 12.32 8"/>
-                        </svg>
-                        </span>
-            </button>
-              
+      </div>
+  
+      <div class="flex flex-col gap-5 w-full md:w-1/2 bg-color5 shadow-2xl rounded-3xl p-6">
+        <h1 class="text-3xl font-bold text-color4">{{ produto?.name }}</h1>
+        <div class="text-sm text-gray-600 space-y-1">
+          <p><span class="font-semibold text-color4">Categoria:</span> {{ produto?.category }}</p>
+          <p><span class="font-semibold text-color4">Marca:</span> {{ produto?.brand }}</p>
+          <p><span class="font-semibold text-color4">Descrição:</span> {{ produto?.description }}</p>
+          <p><span class="font-semibold text-color4">Código:</span> {{ produto?.id }}</p>
         </div>
-
+  
+        <div class="flex items-center gap-2 mt-2">
+          <span class="text-lg font-semibold text-color4">Preço:</span>
+          <span class="text-2xl font-bold">{{ produto?.price | appRealtransforme }}</span>
+        </div>
+  
+        <div class="flex flex-col gap-6 mt-4">
+          @for (variant of produto?.variants; track $index) {
+            <div class="flex flex-col items-start gap-3">
+              <div class="flex items-center gap-2">
+                <span class="w-8 h-8 rounded-full border-2 border-gray-300" [ngStyle]="{ 'background-color': variant.colorHex }"></span>
+                <span class="text-sm font-medium text-gray-700">{{ variant.color }}</span>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                @for (size of variant.sizes; track $index) {
+                  <div class="relative">
+                    <span
+                      class="px-4 py-1 border-l-2 border-r-2 border-b-2 border-t-0 border-color4 rounded-b-full text-sm font-semibold text-color4 hover:bg-color4 hover:text-white transition-colors cursor-pointer"
+                    >
+                      {{ size.size }}
+                    </span>
+                    <span
+                      class="absolute -top-2 -right-2 bg-color3 text-color1 text-xs font-semibold px-2 py-0.5 rounded-full shadow-sm"
+                    >
+                      {{ size.quantity }}
+                    </span>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+  
+        <button class="relative mt-6 inline-flex items-center justify-center overflow-hidden rounded-full bg-color1 md:bg-color2 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 group">
+          <span class="absolute inset-0 w-0 bg-color1 transition-all duration-300 ease-in-out group-hover:w-full z-0 rounded-full"></span>
+          <span class="relative z-10 flex items-center gap-2">
+            Comprar
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
+              <path fill="#fff" d="M12.32 8a3 3 0 0 0-2-.7H5.63A1.59 1.59 0 0 1 4 5.69a2 2 0 0 1 0-.25a1.59 1.59 0 0 1 1.63-1.33h4.62a1.59 1.59 0 0 1 1.57 1.33h1.5a3.08 3.08 0 0 0-3.07-2.83H8.67V.31H7.42v2.3H5.63a3.08 3.08 0 0 0-3.07 2.83a2 2 0 0 0 0 .25a3.07 3.07 0 0 0 3.07 3.07h4.74A1.59 1.59 0 0 1 12 10.35a2 2 0 0 1 0 .34a1.59 1.59 0 0 1-1.55 1.24h-4.7a1.59 1.59 0 0 1-1.55-1.24H2.69a3.08 3.08 0 0 0 3.06 2.73h1.67v2.27h1.25v-2.27h1.7a3.08 3.08 0 0 0 3.06-2.73v-.34A3.06 3.06 0 0 0 12.32 8"/>
+            </svg>
+          </span>
+        </button>
+      </div>
     </div>
-</section>
+  </section>
+  

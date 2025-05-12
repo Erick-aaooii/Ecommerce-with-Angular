@@ -6,20 +6,47 @@ export const PRODUCTS: Product[] = [
     name: 'Vestido 1',
     description: 'descrição foda',
     price: 29.99,
-    quantity: 10,
+    variants: [
+      {
+        color: 'Preto',
+        colorHex: '#000000',
+        sizes: [
+          { size: 'P', quantity: 3 },
+          { size: 'M', quantity: 5 },
+          { size: 'G', quantity: 2 }
+        ]
+      },
+      {
+        color: 'Vermelho',
+        colorHex: '#FF0000',
+        sizes: [
+          { size: 'P', quantity: 1 },
+          { size: 'M', quantity: 0 },
+          { size: 'G', quantity: 4 }
+        ]
+      }
+    ],
     status: 'disponível',
     category: 'Vestidos',
     brand: '',
-    images: [
-      'imgs/Produtos/produto1.jpg'
-    ]
+    images: ['imgs/Produtos/produto1.jpg']
   },
   {
     id: 2,
     name: 'Vestido 2',
     description: 'descrição foda',
     price: 29.99,
-    quantity: 10,
+    variants: [
+      {
+        color: 'Azul',
+        colorHex: '#0000FF',
+        sizes: [
+          { size: 'P', quantity: 2 },
+          { size: 'M', quantity: 6 },
+          { size: 'GG', quantity: 1 }
+        ]
+      }
+    ],
     status: 'disponível',
     category: 'Vestidos',
     brand: 'Nike',
@@ -30,7 +57,17 @@ export const PRODUCTS: Product[] = [
     name: 'Vestido 3',
     description: '',
     price: 29.99,
-    quantity: 10,
+    variants: [
+      {
+        color: 'Verde',
+        colorHex: '#00FF00',
+        sizes: [
+          { size: 'M', quantity: 3 },
+          { size: 'G', quantity: 3 },
+          { size: 'GG', quantity: 2 }
+        ]
+      }
+    ],
     status: 'disponível',
     category: 'Vestidos',
     brand: 'Nike',
@@ -41,7 +78,17 @@ export const PRODUCTS: Product[] = [
     name: 'Vestido 4',
     description: '',
     price: 29.99,
-    quantity: 10,
+    variants: [
+      {
+        color: 'Rosa',
+        colorHex: '#FFC0CB',
+        sizes: [
+          { size: 'P', quantity: 4 },
+          { size: 'M', quantity: 2 },
+          { size: 'G', quantity: 1 }
+        ]
+      }
+    ],
     status: 'disponível',
     category: 'Vestidos',
     brand: 'Nike',
@@ -52,7 +99,16 @@ export const PRODUCTS: Product[] = [
     name: 'Vestido 5',
     description: '',
     price: 29.99,
-    quantity: 10,
+    variants: [
+      {
+        color: 'Branco',
+        colorHex: '#FFFFFF',
+        sizes: [
+          { size: 'M', quantity: 5 },
+          { size: 'G', quantity: 2 }
+        ]
+      }
+    ],
     status: 'disponível',
     category: 'Vestidos',
     brand: 'Nike',
@@ -63,7 +119,17 @@ export const PRODUCTS: Product[] = [
     name: 'Vestido 6',
     description: '',
     price: 29.99,
-    quantity: 10,
+    variants: [
+      {
+        color: 'Amarelo',
+        colorHex: '#FFFF00',
+        sizes: [
+          { size: 'P', quantity: 0 },
+          { size: 'M', quantity: 3 },
+          { size: 'GG', quantity: 1 }
+        ]
+      }
+    ],
     status: 'disponível',
     category: 'Vestidos',
     brand: 'Nike',
@@ -74,7 +140,17 @@ export const PRODUCTS: Product[] = [
     name: 'Vestido 7',
     description: '',
     price: 29.99,
-    quantity: 10,
+    variants: [
+      {
+        color: 'Cinza',
+        colorHex: '#808080',
+        sizes: [
+          { size: 'P', quantity: 2 },
+          { size: 'M', quantity: 1 },
+          { size: 'G', quantity: 0 }
+        ]
+      }
+    ],
     status: 'disponível',
     category: 'Vestidos',
     brand: 'Nike',
@@ -85,7 +161,16 @@ export const PRODUCTS: Product[] = [
     name: 'Vestido 8',
     description: '',
     price: 29.99,
-    quantity: 10,
+    variants: [
+      {
+        color: 'Lilás',
+        colorHex: '#C8A2C8',
+        sizes: [
+          { size: 'M', quantity: 3 },
+          { size: 'G', quantity: 2 }
+        ]
+      }
+    ],
     status: 'disponível',
     category: 'Vestidos',
     brand: 'Nike',
@@ -96,7 +181,16 @@ export const PRODUCTS: Product[] = [
     name: 'Vestido 9',
     description: '',
     price: 29.99,
-    quantity: 10,
+    variants: [
+      {
+        color: 'Bege',
+        colorHex: '#F5F5DC',
+        sizes: [
+          { size: 'P', quantity: 2 },
+          { size: 'GG', quantity: 4 }
+        ]
+      }
+    ],
     status: 'disponível',
     category: 'Vestidos',
     brand: 'Nike',
