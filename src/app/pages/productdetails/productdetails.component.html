@@ -1,12 +1,32 @@
 <section class="flex justify-center px-4">
     <div class="flex w-full max-w-6xl items-start gap-10 flex-col md:flex-row mt-10">
       
-      <div class="w-full md:w-1/2 flex flex-col items-center gap-4">
-        @for (item of produto?.images; track $index) {
-          <img [src]="item" alt="Imagem do produto" class="w-full max-w-xs rounded-2xl shadow-md" />
-        }
+      <div class="relative md:w-1/3 mx-auto overflow-hidden rounded-xl shadow-md mt-3">
+        <div #carousel class="flex transition-transform duration-1000 ease-in-out h-full">
+          @for (item of produto?.images; track $index) {
+            <img
+              [src]="item"
+              alt="Imagem do produto"
+              class="flex-shrink-0 w-full h-full object-cover rounded-xl select-none pointer-events-none"
+            />
+          }
+        </div>
+      
+        <button
+          (click)="prevSlide()"
+          class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/70 text-black p-1 rounded-full shadow hover:bg-white transition"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#A68188" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="64" stroke-dashoffset="64" d="M21 12c0 4.97 -4.03 9 -9 9c-4.97 0 -9 -4.03 -9 -9c0 -4.97 4.03 -9 9 -9c4.97 0 9 4.03 9 9Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0"/></path><path stroke-dasharray="12" stroke-dashoffset="12" d="M17 12h-9.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s" values="12;0"/></path><path stroke-dasharray="8" stroke-dashoffset="8" d="M7 12l4 4M7 12l4 -4"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.9s" dur="0.2s" values="8;0"/></path></g></svg>
+        </button>
+        <button
+          (click)="nextSlide()"
+          class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/70 text-black p-1 rounded-full shadow hover:bg-white transition"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#A68188" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="64" stroke-dashoffset="64" d="M3 12c0 4.97 4.03 9 9 9c4.97 0 9 -4.03 9 -9c0 -4.97 -4.03 -9 -9 -9c-4.97 0 -9 4.03 -9 9Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0"/></path><path stroke-dasharray="12" stroke-dashoffset="12" d="M7 12h9.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s" values="12;0"/></path><path stroke-dasharray="8" stroke-dashoffset="8" d="M17 12l-4 4M17 12l-4 -4"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.9s" dur="0.2s" values="8;0"/></path></g></svg>
+        </button>
       </div>
-  
+      
+        
       <div class="flex flex-col gap-5 w-full md:w-1/2 bg-color5 shadow-2xl rounded-3xl p-6">
         <h1 class="text-3xl font-bold text-color4">{{ produto?.name }}</h1>
         <div class="text-sm text-gray-600 space-y-1">
@@ -18,7 +38,7 @@
   
         <div class="flex items-center gap-2 mt-2">
           <span class="text-lg font-semibold text-color4">Preço:</span>
-          <span class="text-2xl font-bold">{{ produto?.price | appRealtransforme }}</span>
+          <span class="text-2xl text-color1 font-bold">{{ produto?.price | appRealtransforme }}</span>
         </div>
   
         <div class="flex flex-col gap-6 mt-4">

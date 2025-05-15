@@ -9,4 +9,9 @@ import { Config } from '../../db/ConfigOPtions';
 })
 export class NavbarComponent {
   config = Config
+  links = [
+    {name: "Início", link: ""},
+    {name: "Produtos", link: "produtos"},
+    {name: "Contatos", link: "contatos"}
+  ]
 }

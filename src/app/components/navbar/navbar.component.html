@@ -17,32 +17,14 @@
     <div class="mb-2">
         <nav>
             <ul class="flex justify-around mt-2">
+              @for (item of links; track $index) {
                 <li>
-                  <a 
-                    routerLink="" 
-                    class="block px-5 py-2 text-color2 font-[Playfair_Display] border-2 border-colortext-color2 rounded-full transition-all duration-300 hover:bg-color4 hover:text-white focus:bg-color4 focus:text-white"
-                  >
-                    Início
+                  <a [routerLink]="item.link" class="block px-6 md:px-15 py-2 text-color2 font-[Playfair_Display] border-2 border-colortext-color2 rounded-full transition-all duration-300 hover:bg-color4 hover:text-white focus:bg-color4 focus:text-white">
+                  {{item.name}}    
                   </a>
                 </li>
-                <li>
-                  <a 
-                    routerLink="produtos" 
-                    class="block px-5 py-2 text-color2 font-[Playfair_Display] border-2 border-colortext-color2 rounded-full transition-all duration-300 hover:bg-color4 hover:text-white focus:bg-color4 focus:text-white"
-                  >
-                    Produtos
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    routerLink="contatos" 
-                    class="block px-5 py-2 text-color2 font-[Playfair_Display] border-2 border-colortext-color2 rounded-full transition-all duration-300 hover:bg-color4 hover:text-white focus:bg-color4 focus:text-white"
-                  >
-                    Contatos
-                  </a>
-                </li>
-              </ul>
-              
+              }
+            </ul>
         </nav>
     </div>
 </section>

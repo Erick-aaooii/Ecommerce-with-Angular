@@ -5,6 +5,8 @@ import { Component, OnInit, AfterViewInit, HostListener, ElementRef, ViewChild }
   templateUrl: './carousel.component.html'
 })
 export class CarouselComponent implements OnInit, AfterViewInit {
+  imgs = ["imgs/carousel 1.jpg", "imgs/carousel 2.jpg", "imgs/carousel 3.jpg"]
+
   @ViewChild('carousel') carousel!: ElementRef;
   currentIndex = 0;
   totalSlides = 0;

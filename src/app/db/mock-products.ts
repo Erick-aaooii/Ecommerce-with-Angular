@@ -29,7 +29,7 @@ export const PRODUCTS: Product[] = [
     status: 'disponível',
     category: 'Vestidos',
     brand: '',
-    images: ['imgs/Produtos/produto1.jpg']
+    images: ['imgs/Produtos/produto1.jpg','imgs/Produtos/produto1.jpg']
   },
   {
     id: 2,
