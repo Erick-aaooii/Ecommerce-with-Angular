@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Config } from '../../db/ConfigOPtions';
+import { CartService } from '../../services/Cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,4 +15,13 @@ export class NavbarComponent {
     {name: "Produtos", link: "produtos"},
     {name: "Contatos", link: "contatos"}
   ]
+
+  totalItems = 0;
+
+  constructor(private cartService: CartService) {}
+
+  ngOnInit() {
+    this.totalItems = this.cartService.getTotalQuantity();
+  }
+
 }
