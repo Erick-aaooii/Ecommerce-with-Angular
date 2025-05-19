@@ -1,0 +1,54 @@
+<div class="flex flex-col gap-5 w-full md:w-1/2  bg-color5 shadow-2xl rounded-3xl p-6">
+    <h1 class="text-3xl font-bold text-color4">{{ produto.name }}</h1>
+  
+    <div class="text-sm text-gray-600 space-y-1">
+      <p><span class="font-semibold text-color4">Categoria:</span> {{ produto.category }}</p>
+      <p><span class="font-semibold text-color4">Marca:</span> {{ produto.brand }}</p>
+      <p><span class="font-semibold text-color4">Descrição:</span> {{ produto.description }}</p>
+      <p><span class="font-semibold text-color4">Código:</span> {{ produto.id }}</p>
+    </div>
+  
+    <div class="flex items-center gap-2 mt-2">
+      <span class="text-lg font-semibold text-color4">Preço:</span>
+      <span class="text-2xl text-color1 font-bold">{{ produto.price | appRealtransforme }}</span>
+    </div>
+  
+    <div class="flex flex-col gap-6 mt-4">
+      @for (variant of produto.variants; track $index) {
+        <div class="flex flex-col items-start gap-3">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-full border-2 border-gray-300" [ngStyle]="{ 'background-color': variant.colorHex }"></span>
+            <span class="text-sm font-medium text-gray-700">{{ variant.color }}</span>
+          </div>
+  
+          <div class="flex flex-row flex-wrap gap-y-3 gap-x-8">
+            @for (size of variant.sizes; track $index) {
+              <div class="relative">
+                <button
+                  (click)="selectSize(variant.color, size.size)"
+                  [class.bg-color4]="selectedSize[variant.color] === size.size"
+                  [class.text-white]="selectedSize[variant.color] === size.size"
+                  class="px-8 py-2 border-l-2 border-r-2 border-b-2 border-t-0 border-color4 rounded-b-full text-sm font-semibold text-color4 hover:bg-color4 hover:text-white transition-colors cursor-pointer"
+                >
+                  {{ size.size }}
+                </button>
+                <span (click)="increment(variant.color, size.size)" class="absolute -top-2 -right-3 bg-color3 text-color1 text-xs font-semibold px-3 py-1 rounded-full shadow-sm cursor-pointer">+</span>
+                <span (click)="decrement(variant.color, size.size)" class="absolute -top-2 -left-2 bg-color3 text-color1 text-xs font-semibold px-3 py-1 rounded-full shadow-sm cursor-pointer">-</span>
+                <div class="text-center text-sm mt-1 text-color4">{{ selectedQuantities[variant.color + '-' + size.size] || 0 }}</div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+  
+      <button (click)="addToCart()" class="relative mt-6 inline-flex items-center justify-center overflow-hidden rounded-full bg-color1 md:bg-color2 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 group">
+        <span class="absolute inset-0 w-0 bg-color1 transition-all duration-300 ease-in-out group-hover:w-full z-0 rounded-full"></span>
+        <span class="relative z-10 flex items-center gap-2">
+          Comprar
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
+            <path fill="#fff" d="..." />
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
