@@ -21,7 +21,10 @@ export class NavbarComponent {
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    this.totalItems = this.cartService.getTotalQuantity();
-  }
+  this.cartService.cart$.subscribe(items => {
+    this.totalItems = items.reduce((total, item) => total + item.quantity, 0);
+  });
+}
+
 
 }
