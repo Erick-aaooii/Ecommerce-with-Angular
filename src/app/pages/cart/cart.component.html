@@ -1,0 +1,28 @@
+<div class="cart-container p-6 bg-white rounded shadow-lg max-w-3xl mx-auto">
+  <h2 class="text-2xl font-bold mb-4">Carrinho</h2>
+
+  <ng-container *ngIf="(cartItems$ | async) as cartItems; else emptyCart">
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <ul class="space-y-4">
+        <li *ngFor="let item of cartItems" class="flex items-center gap-4 border-b pb-4">
+          <img [src]="item.product.images[0]" alt="{{ item.product.name }}" class="w-20 h-20 object-cover rounded" />
+          <div class="flex-1">
+            <h3 class="font-semibold text-lg">{{ item.product.name }}</h3>
+            <p class="text-sm text-gray-600">Cor: {{ item.variantColor }}</p>
+            <p class="text-sm text-gray-600">Tamanho: {{ item.size }}</p>
+            <p class="text-sm text-gray-600">Quantidade: {{ item.quantity }}</p>
+            <p class="font-semibold text-color1">Total: {{ item.total | appRealtransforme }}</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="mt-6 text-right font-bold text-xl">
+        Total Geral: {{ getTotalPrice(cartItems) | appRealtransforme }}
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #emptyCart>
+    <p class="text-center text-gray-500">Seu carrinho está vazio.</p>
+  </ng-template>
+</div>

@@ -18,3 +18,11 @@ export interface Product {
   images: string[]
   variants: ProductVariant[]
 }
+
+export interface CartItem {
+  product: Product
+  variantColor: string
+  size: 'P' | 'M' | 'G' | 'GG'
+  quantity: number
+  total: number
+}
