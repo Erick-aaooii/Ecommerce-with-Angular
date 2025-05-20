@@ -1,4 +1,4 @@
-<div class="relative md:w-1/2 mx-auto overflow-hidden rounded-xl shadow-md mt-3">
+<div class="relative w-full md:w-1/1.5 mx-auto overflow-hidden rounded-xl shadow-md mt-3">
   <div #carousel class="flex transition-transform duration-1000 ease-in-out h-full">
     @for (item of product.images; track $index) {
       <img [src]="item" alt="Imagem do produto" class="flex-shrink-0 w-full h-full object-cover rounded-xl select-none pointer-events-none"/>

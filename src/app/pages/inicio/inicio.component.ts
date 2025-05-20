@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { CarouselComponent } from "../../components/carousel/carousel.component";
-import { CardsComponent } from "../../components/cards/cards.component";
-import { BigcardComponent } from "../../components/bigcard/bigcard.component";
+import { BigcardComponent } from "./bigcard/bigcard.component";
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { CardsComponent } from './components/cards/cards.component';
 
 @Component({
   selector: 'app-inicio',
