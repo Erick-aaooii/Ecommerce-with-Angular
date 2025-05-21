@@ -1,28 +1,40 @@
 <div class="cart-container p-6 bg-white rounded shadow-lg max-w-3xl mx-auto">
   <h2 class="text-2xl font-bold mb-4">Carrinho</h2>
 
-  <ng-container *ngIf="(cartItems$ | async) as cartItems; else emptyCart">
-    <div *ngIf="cartItems.length > 0; else emptyCart">
-      <ul class="space-y-4">
-        <li *ngFor="let item of cartItems" class="flex items-center gap-4 border-b pb-4">
-          <img [src]="item.product.images[0]" alt="{{ item.product.name }}" class="w-20 h-20 object-cover rounded" />
-          <div class="flex-1">
-            <h3 class="font-semibold text-lg">{{ item.product.name }}</h3>
-            <p class="text-sm text-gray-600">Cor: {{ item.variantColor }}</p>
-            <p class="text-sm text-gray-600">Tamanho: {{ item.size }}</p>
-            <p class="text-sm text-gray-600">Quantidade: {{ item.quantity }}</p>
-            <p class="font-semibold text-color1">Total: {{ item.total | appRealtransforme }}</p>
-          </div>
-        </li>
-      </ul>
+  @if (cartItems$ | async; as cartItems) {
+    @if (cartItems.length > 0) {
+      <div>
+        <ul class="space-y-4">
+          @for (item of cartItems; track $index) {
+            <li class="flex items-center gap-4 border-b pb-4">
+              <img [src]="item.product.images[0]" alt="{{ item.product.name }}" class="w-20 h-20 object-cover rounded" />
+              <div class="flex-1">
+                <h3 class="font-semibold text-lg">{{ item.product.name }}</h3>
+                <p class="text-sm text-gray-600">Cor: {{ item.variantColor }}</p>
+                <p class="text-sm text-gray-600">Tamanho: {{ item.size }}</p>
+                <p class="text-sm text-gray-600">Quantidade: {{ item.quantity }}</p>
+                <p class="font-semibold text-color1">Total: {{ item.total | appRealtransforme }}</p>
+              </div>
+              <div>
+                <button (click)="removeItem(item)" class="text-color2 hover:scale-110 transform ">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="24" stroke-dashoffset="24" d="M12 20h5c0.5 0 1 -0.5 1 -1v-14M12 20h-5c-0.5 0 -1 -0.5 -1 -1v-14"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="24;0"/></path><path stroke-dasharray="20" stroke-dashoffset="20" d="M4 5h16"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.4s" dur="0.2s" values="20;0"/></path><path stroke-dasharray="8" stroke-dashoffset="8" d="M10 4h4M10 9v7M14 9v7"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="8;0"/></path></g></svg>
+                </button>
+              </div>
+            </li>
+          }
+        </ul>
 
-      <div class="mt-6 text-right font-bold text-xl">
-        Total Geral: {{ getTotalPrice(cartItems) | appRealtransforme }}
+        <div class="mt-6 text-right font-bold text-xl">
+          Total Geral: {{ getTotalPrice(cartItems) | appRealtransforme }}
+        </div>
       </div>
-    </div>
-  </ng-container>
-
-  <ng-template #emptyCart>
-    <p class="text-center text-gray-500">Seu carrinho está vazio.</p>
-  </ng-template>
+    } @else {
+      <div class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="104" height="104" viewBox="0 0 24 24"><path fill="currentColor" d="M22.73 22.73L1.27 1.27L0 2.54l4.39 4.39l2.21 4.66l-1.35 2.45c-.16.28-.25.61-.25.96a2 2 0 0 0 2 2h7.46l1.38 1.38c-.5.36-.84.95-.84 1.62a2 2 0 0 0 2 2c.67 0 1.26-.33 1.62-.84L21.46 24zM7.42 15a.25.25 0 0 1-.25-.25l.03-.12l.9-1.63h2.36l2 2zm8.13-2c.75 0 1.41-.41 1.75-1.03l3.58-6.47c.08-.16.12-.33.12-.5a1 1 0 0 0-1-1H6.54zM7 18a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2"/></svg>
+      <p class="text-center text-gray-500">Seu carrinho está vazio.</p>
+      </div>
+    }
+  } @else {
+    <p class="text-center text-gray-500">Carregando carrinho...</p>
+  }
 </div>

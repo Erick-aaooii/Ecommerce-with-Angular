@@ -52,4 +52,17 @@ export class CartService {
   getTotalQuantity(): number {
     return this.cartItems.reduce((total, item) => total + item.quantity, 0);
   }
+  
+  removeItem(itemToRemove: CartItem) {
+  this.cartItems = this.cartItems.filter(item =>
+    !(
+      item.product.id === itemToRemove.product.id &&
+      item.variantColor === itemToRemove.variantColor &&
+      item.size === itemToRemove.size
+    )
+  );
+  this.cartSubject.next([...this.cartItems]);
+  localStorage.setItem('cart', JSON.stringify(this.cartItems));
+}
+
 }

@@ -1,24 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
-import { CartItem } from '../../models/product';
 import { CartService } from '../../services/Cart.service';
+import { AsyncPipe } from '@angular/common';
 import { RealtransformePipe } from '../../pipes/realtransforme.pipe';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, RealtransformePipe],
-  templateUrl: './cart.component.html'
+  imports: [CommonModule, AsyncPipe, RealtransformePipe],
+  templateUrl: './cart.component.html',
 })
 export class CartComponent {
-  cartItems$: Observable<CartItem[]>;
+  private cartService = inject(CartService);
+  cartItems$ = this.cartService.cart$;
 
-  constructor(private cartService: CartService) {
-    this.cartItems$ = this.cartService.cart$;
+  getTotalPrice(cartItems: any[]): number {
+    return cartItems.reduce((total, item) => total + item.total, 0);
   }
+  removeItem(item: any) {
+  this.cartService.removeItem(item);
+}
 
-  getTotalPrice(items: CartItem[]): number {
-    return items.reduce((acc, item) => acc + item.total, 0);
-  }
 }
