@@ -9,5 +9,14 @@ import { SearchProductsComponent } from "./components/searchProducts/searchProdu
   templateUrl: './produtos.component.html'
 })
 export class ProdutosComponent {
+  searchTerm = ''
+  suggestions: string[] = []
 
+  updateSearch(term: string) {
+    this.searchTerm = term
+  }
+
+  updateSuggestions(suggestions: string[]) {
+    this.suggestions = suggestions
+  }
 }

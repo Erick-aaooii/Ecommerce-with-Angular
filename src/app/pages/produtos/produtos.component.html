@@ -1,6 +1,14 @@
 <section class="flex flex-col items-center">
-    <searchProducts
-    class="w-full flex justify-center"
+    <searchProducts 
+    class="w-full flex justify-center" 
+    [suggestions]="suggestions"
+    (search)="updateSearch($event)"
     />
-    <app-product/>
-</section>
+    
+    <app-product 
+    [searchTerm]="searchTerm"
+    (suggestionList)="updateSuggestions($event)" 
+    />
+
+  </section>
+  
