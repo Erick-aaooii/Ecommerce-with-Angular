@@ -5,7 +5,7 @@ import { Product } from '../../../../models/product'
 import { ProductService } from '../../../../services/products.service'
 
 @Component({
-  selector: 'app-product',
+  selector: 'products',
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './product.component.html'

@@ -12,10 +12,10 @@
             <h2 class="mb-6 text-sm font-semibold text-color2 uppercase">Links</h2>
             <ul class="text-white font-medium">
               <li class="mb-4">
-                <a href="https://tailwindcss.com/" class="hover:underline">Produtos</a>
+                <a routerLink="produtos" class="hover:underline">Produtos</a>
               </li>
               <li>
-                <a href="https://flowbite.com/" class="hover:underline">Contatos</a>
+                <a routerLink="contatos" class="hover:underline">Contatos</a>
               </li>
             </ul>
           </div>
@@ -23,10 +23,10 @@
             <h2 class="mb-6 text-sm font-semibold text-color2 uppercase">Siga-nos</h2>
             <ul class="text-white font-medium">
               <li class="mb-4">
-                <a [href]="config.instagram" class="hover:underline">Instagram</a>
+                <a [href]="config.contact.instagram" target="_blank" class="hover:underline">Instagram</a>
               </li>
               <li>
-                <a [href]="config.facebook" class="hover:underline">Facebook</a>
+                <a [href]="config.contact.facebook" target="_blank" class="hover:underline">Facebook</a>
               </li>
             </ul>
           </div>
@@ -34,10 +34,10 @@
             <h2 class="mb-6 text-sm font-semibold text-color2 uppercase">Legal</h2>
             <ul class="text-white font-medium">
               <li class="mb-4">
-                <a href="#" class="hover:underline">Política de Privacidade</a>
+                <a href="#" target="_blank" class="hover:underline">Política de Privacidade</a>
               </li>
               <li>
-                <a href="#" class="hover:underline">Termos de Uso</a>
+                <a href="#" target="_blank" class="hover:underline">Termos de Uso</a>
               </li>
             </ul>
           </div>
@@ -46,7 +46,7 @@
       <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
       <div class="flex justify-center">
         <span class="text-sm text-white sm:text-center">
-          © 2025 <a href="/" class="hover:underline">Menina Zangada™</a>. Todos os direitos reservados.
+          © 2025 <a href="/" class="hover:underline">{{config.EcommerceConfig.name}}™</a>. Todos os direitos reservados.
         </span>
       </div>
     </div>

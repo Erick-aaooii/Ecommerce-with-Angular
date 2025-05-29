@@ -16,6 +16,9 @@ export class NavbarComponent {
     {name: "Contatos", link: "contatos"}
   ]
 
+  icon = Config.EcommerceConfig.icon
+
+
   totalItems = 0;
 
   constructor(private cartService: CartService) {}

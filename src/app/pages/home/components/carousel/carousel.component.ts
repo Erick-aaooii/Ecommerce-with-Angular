@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, HostListener, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-carousel',
+  selector: 'carousel',
   templateUrl: './carousel.component.html'
 })
 export class CarouselComponent implements OnInit, AfterViewInit {
