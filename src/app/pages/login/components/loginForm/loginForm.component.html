@@ -1,0 +1,36 @@
+<div class="flex justify-center items-center">
+    <!-- formulário de login -->
+    <form [formGroup]="loginForm" (ngSubmit)="requestLogin()" class="space-y-4 bg-white p-6 rounded-lg shadow-md w-96">
+      <h2 class="text-xl text-color4 font-semibold text-center">Entrar</h2>
+
+      <!-- input de email -->
+      <input type="email" placeholder="Email" formControlName="email"
+      class="w-full border-color1 placeholder:text-gray-500 p-2 border outline-none rounded"/>
+
+      <!-- input de senha -->      
+      <div class="relative">
+      <input [type]="showPassword ? 'text' : 'password'" placeholder="Senha" formControlName="password"
+      class="w-full border-color1 placeholder:text-gray-500 p-2 border outline-none rounded"/>
+
+      <button type="button" (click)="togglePasswordVisibility()" tabindex="-1"
+      class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">
+      @if (showPassword) {
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><mask id="lineMdWatchOff0"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"><circle cx="12" cy="12" r="0" fill="#fff" stroke="none"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3"/></circle><path d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z"/></path><path stroke="#000" stroke-dasharray="28" stroke-dashoffset="28" d="M0 11h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0"/></path><path stroke-dasharray="28" stroke-dashoffset="28" d="M0 13h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0"/></path></g></mask><rect width="24" height="24" fill="currentColor" mask="url(#lineMdWatchOff0)"/></svg>
+      } @else {
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect width="24" height="24" fill="none"/><circle cx="12" cy="12" r="0" fill="currentColor"><animate attributeName="r" dur="6s" keyTimes="0;0.03;0.97;1" repeatCount="indefinite" values="0;3;3;0"/></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate attributeName="d" dur="6s" keyTimes="0;0.03;0.97;1" repeatCount="indefinite" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z;M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"/></path></svg>
+      }
+      </button>
+      </div>
+
+      <!-- botão para login -->
+      <button [disabled]="loginForm.invalid" type="submit"
+      class="w-full bg-color2 text-white p-2 rounded hover:bg-color4">
+        Entrar
+      </button>
+
+      <p class="text-sm text-center mt-2">
+        Não tem uma conta?
+        <a routerLink="register"  class="text-color1 hover:underline">Criar conta</a>
+      </p>
+    </form>
+  </div>

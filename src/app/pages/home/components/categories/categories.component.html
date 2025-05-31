@@ -1,6 +1,6 @@
 <div class="flex flex-row justify-center md:gap-x-10">
     @for (item of categories; track $index) {
-        <div class="flex flex-col items-center text-center">
+        <div class="flex flex-col transform transition-transform hover:scale-110 duration-100 items-center text-center">
             <img [src]="item.img" [alt]="item.alt" class="rounded-full w-30">
             <span class="text-color1">{{ item.alt }}</span>
         </div>

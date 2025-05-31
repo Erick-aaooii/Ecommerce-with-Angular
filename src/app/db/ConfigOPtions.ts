@@ -9,6 +9,10 @@
         },
         EcommerceConfig: {
         icon: "favicon.png",
-        name: "Menina Zangada"
+        name: "Menina Zangada",
+        doubleCardImgs: [
+            "https://viaevangelica.cdn.magazord.com.br/img/2024/11/banner/247688/banner-whats.gif",
+            "https://viaevangelica.cdn.magazord.com.br/img/2025/05/banner/266635/alto-verao-desk.gif"
+        ]
     }
     }

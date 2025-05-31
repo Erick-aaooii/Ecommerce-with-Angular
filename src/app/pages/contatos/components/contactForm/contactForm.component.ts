@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ContactServiceService } from '../../../../services/ContactService.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Contact } from '../../../../models/contacts';
 
 @Component({
@@ -12,10 +12,18 @@ export class ContactFormComponent {
   constructor(private contactService: ContactServiceService) {}
 
   contactForm: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    telephone: new FormControl(''),
-    message: new FormControl('')
+    name: new FormControl('',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(25)]
+    ),
+    email: new FormControl('',
+      [Validators.required, Validators.email]
+    ),
+    telephone: new FormControl('',
+      [Validators.required, Validators.pattern('^[0-9]*$')]
+    ),
+    message: new FormControl('',
+      [Validators.required, Validators.maxLength(500)]
+    )
   });
 
   enviarFormulario() {

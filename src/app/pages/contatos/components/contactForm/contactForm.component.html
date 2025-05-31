@@ -1,55 +1,97 @@
 <!-- Formulário de contato -->
-<div class="flex-1 bg-white rounded-2xl shadow-lg p-6 space-y-6">
-    <h3 class="text-2xl font-semibold text-color4">Envie uma mensagem</h3>
-    <form [formGroup]="contactForm" (ngSubmit)="enviarFormulario()" class="space-y-4">
+<div class="flex-1 bg-white rounded-2xl shadow-lg p-4 space-y-6">
+  <h3 class="text-2xl font-semibold text-color4">Envie uma mensagem</h3>
 
-      <div>
+  <form [formGroup]="contactForm" (ngSubmit)="enviarFormulario()" class="space-y-4">
+
+    <!-- Nome -->
+    <div>
+      @if (contactForm.get('name')?.touched && contactForm.get('name')?.invalid) {
+        <label for="nome" class="block text-sm font-medium text-red-600">
+          Nome é obrigatório e deve ter pelo menos 3 caracteres.
+        </label>
+      } @else {
         <label for="nome" class="block text-sm font-medium text-gray-700">Nome</label>
-        <input 
-          id="nome" 
-          type="text" 
-          formControlName="name"
-          class="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
-          placeholder="Digite seu nome" />
-      </div>
+      }
 
-      <div>
+      <input 
+        id="nome" 
+        type="text" 
+        formControlName="name"
+        class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
+        placeholder="Digite seu nome" />
+    </div>
+
+    <!-- E-mail -->
+    <div>
+      @if (contactForm.get('email')?.touched && contactForm.get('email')?.invalid) {
+        <label for="email" class="block text-sm font-medium text-red-600">
+          @if (contactForm.get('email')?.errors?.['required']) {
+            E-mail é obrigatório.
+          } @else if (contactForm.get('email')?.errors?.['email']) {
+            E-mail inválido.
+          }
+        </label>
+      } @else {
         <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
-        <input 
-          id="email" 
-          type="email" 
-          formControlName="email"
-          class="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
-          placeholder="Digite seu e-mail" />
-      </div>
+      }
 
-      <div>
+      <input 
+        id="email" 
+        type="email" 
+        formControlName="email"
+        class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
+        placeholder="Digite seu e-mail" />
+    </div>
+
+    <!-- Telefone -->
+    <div>
+      @if (contactForm.get('telephone')?.touched && contactForm.get('telephone')?.invalid) {
+        <label for="telephone" class="block text-sm font-medium text-red-600">
+          Telefone deve conter apenas números.
+        </label>
+      } @else {
         <label for="telephone" class="block text-sm font-medium text-gray-700">Telefone</label>
-        <input 
-          id="telephone" 
-          type="tel" 
-          formControlName="telephone"
-          class="font-sans w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
-          placeholder="(00) 90000-0000" />
-      </div>
+      }
 
-      <div>
+      <input 
+        id="telephone" 
+        type="tel"
+        formControlName="telephone"
+        class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
+        placeholder="(00) 90000-0000" />
+    </div>
+
+    <!-- Mensagem -->
+    <div>
+      @if (contactForm.get('message')?.touched && contactForm.get('message')?.invalid) {
+        <label for="message" class="block text-sm font-medium text-red-600">
+          @if (contactForm.get('message')?.errors?.['required']) {
+            Mensagem é obrigatória.
+          } @else if (contactForm.get('message')?.errors?.['maxlength']) {
+            A mensagem pode ter no máximo 500 caracteres.
+          }
+        </label>
+      } @else {
         <label for="message" class="block text-sm font-medium text-gray-700">Mensagem</label>
-        <textarea 
-          id="message" 
-          formControlName="message"
-          rows="4"
-          class="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
-          placeholder="Digite sua mensagem"></textarea>
-      </div>
+      }
 
-      <button
-        type="submit"
-        [disabled]="contactForm.invalid"
-        class="w-full bg-color2 text-white py-2 px-4 rounded-full hover:bg-color1 transition-all font-semibold"
-      >
-        Enviar
-      </button>
+      <textarea 
+        id="message" 
+        formControlName="message"
+        rows="4"
+        class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
+        placeholder="Digite sua mensagem"></textarea>
+    </div>
 
-    </form>
-  </div>
+    <!-- Botão -->
+    <button
+      type="submit"
+      [disabled]="contactForm.invalid"
+      class="w-full bg-color2 text-white py-2 px-4 rounded-full hover:bg-color1 transition-all font-semibold"
+    >
+      Enviar
+    </button>
+
+  </form>
+</div>

@@ -6,4 +6,17 @@
     --color-color3: #BFA8AD;
     --color-color4: #733444;
     --color-color5: #F2EEEB;
+
+    --animate-fade-in-scale: fade-in-scale 0.3s ease-out;
+
+    @keyframes fade-in-scale {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 }

@@ -1,8 +1,9 @@
-import { Component, OnInit, AfterViewInit, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'carousel',
-  templateUrl: './carousel.component.html'
+  templateUrl: './carousel.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselComponent implements OnInit, AfterViewInit {
   imgs = ["imgs/carousel 1.jpg", "imgs/carousel 2.jpg", "imgs/carousel 3.jpg"]

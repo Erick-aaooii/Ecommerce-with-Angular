@@ -1,10 +1,11 @@
-import { Component, Input, ViewChild, ElementRef, AfterViewInit, HostListener } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, AfterViewInit, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'productCarrosel',
   standalone: true,
   templateUrl: './productCarrosel.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule]
 })
 export class CarroselComponent implements AfterViewInit {

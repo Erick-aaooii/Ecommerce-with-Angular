@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'categories',
   imports: [],
-  templateUrl: './categories.component.html'
+  templateUrl: './categories.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesComponent { 
   categories = [
