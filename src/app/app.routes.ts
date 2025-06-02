@@ -1,26 +1,51 @@
 import { Routes } from '@angular/router';
-import { ProdutosComponent } from './pages/produtos/produtos.component';
-import { ContatosComponent } from './pages/contatos/contatos.component';
-import { ProductdetailsComponent } from './pages/productdetails/productdetails.component';
-import { CartComponent } from './pages/cart/cart.component';
-import { InicioComponent } from './pages/home/inicio.component';
-import { LoginComponent } from './pages/login/login.component';
-import { LoginFormComponent } from './pages/login/components/loginForm/loginForm.component';
-import { RegisterFormComponent } from './pages/login/components/registerForm/registerForm.component';
-import { UserComponent } from './pages/user/user.component';
 
 export const routes: Routes = [
-    {path: "", component: InicioComponent},
-    {path: "produtos", component: ProdutosComponent},
-    {path: "contatos", component: ContatosComponent},
-    { path: "produto/:id", component: ProductdetailsComponent },
-    {path: "carrinho", component: CartComponent},
-    { 
-        path: "login", component: LoginComponent, 
-        children: [
-            {path: "", component: LoginFormComponent },
-            {path: "register", component: RegisterFormComponent}
-        ] 
-    },
-    {path: "user", component: UserComponent}
+  {
+    path: '',
+    loadComponent: () =>
+      import('./pages/home/inicio.component').then(m => m.InicioComponent)
+  },
+  {
+    path: 'produtos',
+    loadComponent: () =>
+      import('./pages/produtos/produtos.component').then(m => m.ProdutosComponent)
+  },
+  {
+    path: 'contatos',
+    loadComponent: () =>
+      import('./pages/contatos/contatos.component').then(m => m.ContatosComponent)
+  },
+  {
+    path: 'produto/:id',
+    loadComponent: () =>
+      import('./pages/productdetails/productdetails.component').then(m => m.ProductdetailsComponent)
+  },
+  {
+    path: 'carrinho',
+    loadComponent: () =>
+      import('./pages/cart/cart.component').then(m => m.CartComponent)
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/login.component').then(m => m.LoginComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./pages/login/components/loginForm/loginForm.component').then(m => m.LoginFormComponent)
+      },
+      {
+        path: 'register',
+        loadComponent: () =>
+          import('./pages/login/components/registerForm/registerForm.component').then(m => m.RegisterFormComponent)
+      }
+    ]
+  },
+  {
+    path: 'user',
+    loadComponent: () =>
+      import('./pages/user/user.component').then(m => m.UserComponent)
+  }
 ];

@@ -30,7 +30,6 @@ export class AuthService {
           setTimeout(() => {
             this.userIsLogged.set(false)
           }, 5000);
-          this.userIsLogged.set(true)
         })
         .catch((err) => {
           let msg = 'Erro desconhecido.';
@@ -54,12 +53,11 @@ export class AuthService {
 
           this.loginError.set(true);
           this.loginErrorMessage.set(msg);
-          observer.next(null);
+          observer.error(err);
           observer.complete();
           setTimeout(() => {
             this.loginError.set(false)
           }, 5000);
-          console.log(err)
         });
     });
   }
