@@ -1,59 +1,73 @@
-# MeninaZangada
+<h1>Ecommerce com Angular</h1>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
+  <p>
+    Este projeto tem como objetivo simular uma aplicação de e-commerce o mais próxima possível de um ambiente real de produção. Ele permite a geração de pedidos reais e pode, em alguns casos, ser utilizado como um site funcional para uma loja.
+  </p>
 
-## Development server
+  <p>
+    <strong>Atenção:</strong> para uso em produção, é necessário configurar previamente toda a aplicação. Mais informações estão disponíveis na seção 
+    <a href="#preparo">Preparo para rodar a aplicação</a>.
+  </p>
 
-To start a local development server, run:
+  <p>
+    As bibliotecas utilizadas no projeto podem ser encontradas <a href="#ferramentas">aqui</a>.
+  </p>
 
-```bash
-ng serve
-```
+  <p>
+    Este projeto foi gerado utilizando o 
+    <a href="https://github.com/angular/angular-cli" target="_blank">Angular CLI</a> na versão 19.2.8.
+  </p>
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+  <hr>
 
-## Code scaffolding
+  <h2 id="ferramentas">🛠️ Ferramentas</h2>
+  <ul>
+    <li>Angular 19.2.8</li>
+    <li>Firebase SDK</li>
+    <li>Tailwind CSS</li>
+  </ul>
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+  <hr>
 
-```bash
-ng generate component component-name
-```
+  <h2 id="preparo">🔧 Preparo para rodar a aplicação</h2>
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+  <p>
+    Antes de tudo, este projeto exige a criação de uma pasta <code>environments</code>, que deve estar no mesmo nível da pasta <code>app</code>, contendo as variáveis de ambiente para conexão com o Firebase SDK.
+  </p>
 
-```bash
-ng generate --help
-```
+  <p>
+    Além disso, é necessário ter instalado:
+  </p>
+  <ul>
+    <li>Node.js (versão 18 ou superior)</li>
+    <li>Angular CLI</li>
+    <li>Gerenciador de pacotes (npm ou yarn)</li>
+  </ul>
 
-## Building
+  <p>Para instalar as dependências:</p>
+  <pre><code>npm install</code></pre>
+  <p>ou</p>
+  <pre><code>yarn install</code></pre>
 
-To build the project run:
+  <hr>
 
-```bash
-ng build
-```
+  <h2>▶️ Como rodar</h2>
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+  <p>Para iniciar o projeto em ambiente de desenvolvimento:</p>
+  <pre><code>ng serve</code></pre>
 
-## Running unit tests
+  <p>Após isso, acesse a aplicação no navegador através do endereço:</p>
+  <p><a href="http://localhost:4200" target="_blank">http://localhost:4200</a></p>
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+  <hr>
 
-```bash
-ng test
-```
+  <h2>📦 Especificações da aplicação</h2>
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+  <ul>
+    <li>Estrutura modular com Angular</li>
+    <li>Integração com Firebase para autenticação e base de dados</li>
+    <li>Componentes reutilizáveis e desacoplados</li>
+    <li>Design responsivo com Tailwind CSS</li>
+    <li>Proteção de rotas e autenticação de usuário</li>
+    <li>Suporte a múltiplas páginas (SPA)</li>
+  </ul>
