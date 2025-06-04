@@ -17,7 +17,6 @@ export class NavbarComponent {
   loginErro = inject(AuthService).loginError
   loginMessage = inject(AuthService).loginErrorMessage
   userIsLogged = inject(AuthService).userIsLogged
-  stayLogged = inject(AuthService).stayLogged
 
   links = [
     { name: 'Início', link: '' },

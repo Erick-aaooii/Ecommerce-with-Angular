@@ -71,7 +71,7 @@ export class AuthService {
     return from(this.auth.signOut());
   }
 
-  get currentUser() {
-    return this.auth.currentUser;
+  get IsAuthenticade(): Boolean {
+    return this.auth.currentUser !== null;
   }
 }

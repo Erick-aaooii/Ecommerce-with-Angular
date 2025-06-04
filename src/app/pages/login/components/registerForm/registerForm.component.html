@@ -42,7 +42,7 @@
       <button
       type="button"
       (click)="visibilityChange()"
-      class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500"
+      class="cursor-pointer absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-color4"
       tabindex="-1"
       >
       @if (visibility) {
@@ -61,7 +61,7 @@
       />
 
 
-      <button type="submit" class="w-full bg-color2 text-white p-2 rounded hover:bg-color4">
+      <button type="submit" class="w-full p-2 rounded text-white bg-color2 hover:bg-color4 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed">
         Criar conta
       </button>
 
