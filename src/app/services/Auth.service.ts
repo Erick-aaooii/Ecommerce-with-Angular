@@ -1,17 +1,29 @@
 import { Injectable, signal } from '@angular/core';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  UserCredential,
+} from 'firebase/auth';
+import {
+  getFirestore,
+  doc,
+  setDoc,
+} from 'firebase/firestore';
 import { from, Observable } from 'rxjs';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private auth = getAuth();
+  private db = getFirestore();
 
   loginError = signal(false);
   loginErrorMessage = signal('');
   userIsLogged = signal(false);
-  stayLogged  = signal(false);
+  stayLogged = signal(false);
 
   constructor() {}
 
@@ -26,17 +38,15 @@ export class AuthService {
           this.loginErrorMessage.set('');
           observer.next(userCredential);
           observer.complete();
-          this.userIsLogged.set(true)
-          setTimeout(() => {
-            this.userIsLogged.set(false)
-          }, 5000);
+          this.userIsLogged.set(true);
+          setTimeout(() => this.userIsLogged.set(false), 5000);
         })
         .catch((err) => {
           let msg = 'Erro desconhecido.';
           switch (err.code) {
             case 'auth/invalid-email':
               msg = 'O e-mail informado é inválido.';
-              break;            
+              break;
             case 'auth/invalid-credential':
               msg = 'Usuário não encontrado.';
               break;
@@ -55,23 +65,45 @@ export class AuthService {
           this.loginErrorMessage.set(msg);
           observer.error(err);
           observer.complete();
-          setTimeout(() => {
-            this.loginError.set(false)
-          }, 5000);
+          setTimeout(() => this.loginError.set(false), 5000);
         });
     });
   }
 
-  register(email: string, password: string): Observable<UserCredential> {
-    return from(createUserWithEmailAndPassword(this.auth, email, password));
+  registerAndSaveUser(userData: User, password: string): Observable<UserCredential> {
+    return new Observable((observer) => {
+      createUserWithEmailAndPassword(this.auth, userData.email, password)
+        .then(async (userCredential) => {
+          const uid = userCredential.user.uid;
+          const userRef = doc(this.db, 'users', uid);
+
+          const userToSave = {
+            uid,
+            name: userData.name,
+            email: userData.email,
+            cpf: userData.cpf,
+            telephone: userData.telephone,
+            orders: [],
+          };
+
+          await setDoc(userRef, userToSave);
+
+          observer.next(userCredential);
+          observer.complete();
+        })
+        .catch((err) => {
+          observer.error(err);
+          observer.complete();
+        });
+    });
   }
 
   logout(): Observable<void> {
-    this.stayLogged.set(false)
+    this.stayLogged.set(false);
     return from(this.auth.signOut());
   }
 
-  get IsAuthenticade(): Boolean {
+  get IsAuthenticade(): boolean {
     return this.auth.currentUser !== null;
   }
 }

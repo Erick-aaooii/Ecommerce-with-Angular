@@ -1,40 +1,80 @@
 <!-- Formulário de Cadastro -->
 <div class="flex justify-center items-center">
-    <form class="space-y-4 bg-white p-6 rounded-lg shadow-md w-96">
+    <form [formGroup]="registerForm" (ngSubmit)="register()" class="space-y-4 bg-white p-6 rounded-lg shadow-md w-96">
       <h2 class="text-xl text-color4 font-semibold text-center">Criar Conta</h2>
 
+      <!-- input de entrada do nome -->
+      <div class="relative">
+      <span 
+      class="absolute bottom-10 text-xs text-red-600"
+      [hidden]="!getErrorMessage('name')">{{getErrorMessage('name')}}</span>
       <input
-        formControlName="nome"
+        formControlName="name"
         type="text"
+        minlength="3"
+        maxlength="30"
         placeholder="Nome"
         class="w-full border-color1 placeholder:text-gray-500 p-2 outline-none border rounded"
       />
+      </div>
 
+      <!-- input de entrada do cpf -->
+      <div class="relative">
+      <span
+      class="absolute bottom-10 text-xs text-red-600"
+      [hidden]="!getErrorMessage('cpf')">{{getErrorMessage('cpf')}}</span>
       <input
         formControlName="cpf"
+        formControlName="cpf"
         type="text"
+        inputmode="numeric"
+        pattern="\d*"
+        minlength="11"
+        maxlength="11"
         placeholder="CPF"
         class="w-full border-color1 placeholder:text-gray-500 p-2 outline-none border rounded"
       />
+      </div>
 
+      <!-- input de entrada do telefone -->
+      <div class="relative">
+      <span 
+      class="absolute bottom-10 text-xs text-red-600"
+      [hidden]="!getErrorMessage('telephone')">{{getErrorMessage('telephone')}}</span>
+      <input
+        formControlName="telephone"
+        type="tel"
+        minlength="8"
+        maxlength="11"
+        placeholder="Número"
+        class="w-full border-color1 placeholder:text-gray-500 p-2 outline-none border rounded"
+      />
+      </div>
+
+      <!-- input de entrada do email -->
+      <div class="relative">
+      <span 
+      class="absolute bottom-10 text-xs text-red-600"
+      [hidden]="!getErrorMessage('email')">{{getErrorMessage('email')}}</span>
       <input
         formControlName="email"
         type="email"
         placeholder="Email"
         class="w-full border-color1 placeholder:text-gray-500 p-2 outline-none border rounded"
-        />
-        
-      <input
-        formControlName="numero"
-        type="tel"
-        placeholder="Número"
-        class="w-full border-color1 placeholder:text-gray-500 p-2 outline-none border rounded"
       />
-
+      </div>
+      
+      <!-- input de senha vísivel -->
+      <div class="relative">
+      <span 
+      class="absolute bottom-10 text-xs text-red-600"
+      [hidden]="!getErrorMessage('password')">{{getErrorMessage('password')}}</span>
       <div class="relative">
       <input
-        formControlName="senha"
+        formControlName="password"
         [type]="visibility ? 'password' : 'text' "
+        minlength="6"
+        maxlength="30"
         placeholder="Senha"
         class="w-full border-color1 placeholder:text-gray-500 p-2 outline-none border rounded"
       />
@@ -52,16 +92,27 @@
       }
       </button>
       </div>
+      </div>
 
+      <!-- input de senha não vísivel -->
+      <div class="relative">
+      <span 
+      class="absolute bottom-10 text-xs text-red-600"
+      [hidden]="!getErrorMessage('passwordAgain')">{{getErrorMessage('passwordAgain')}}</span>
       <input
-        formControlName="senha2"
+        formControlName="passwordAgain"
         type="Password"
+        minlength="6"
+        maxlength="30"
         placeholder="repita a senha"
         class="w-full border-color1 placeholder:text-gray-500 p-2 outline-none border rounded"
       />
+      </div>
 
-
-      <button type="submit" class="w-full p-2 rounded text-white bg-color2 hover:bg-color4 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed">
+      <button 
+      type="submit"
+      [disabled]="registerForm.invalid || !passwordEquals"
+      class="cursor-pointer w-full p-2 rounded text-white bg-color2 hover:bg-color4 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed">
         Criar conta
       </button>
 

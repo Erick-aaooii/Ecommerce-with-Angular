@@ -26,3 +26,23 @@ export interface CartItem {
   quantity: number
   total: number
 }
+
+export interface Purchase {
+  id: string // ID único da compra
+  items: CartItem[] // Itens comprados
+  subtotal: number // Soma de todos os produtos (sem frete)
+  shipping: number // Valor do frete
+  total: number // subtotal + shipping
+  status: 'pendente' | 'pago' | 'enviado' | 'entregue' | 'cancelado'
+  createdAt: Date // Data da compra
+  buyerId: string // ID do comprador (pode ser email, uid, etc)
+  shippingAddress?: {
+    street: string
+    number: string
+    complement?: string
+    neighborhood: string
+    city: string
+    state: string
+    zipCode: string
+  }
+}
