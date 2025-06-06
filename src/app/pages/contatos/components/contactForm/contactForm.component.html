@@ -1,95 +1,50 @@
-<!-- Formulário de contato -->
 <div class="flex-1 bg-white rounded-2xl shadow-lg p-4 space-y-6">
   <h3 class="text-2xl font-semibold text-color4">Envie uma mensagem</h3>
 
   <form [formGroup]="contactForm" (ngSubmit)="enviarFormulario()" class="space-y-4">
 
-    <!-- Nome -->
-    <div>
-      @if (contactForm.get('name')?.touched && contactForm.get('name')?.invalid) {
-        <label for="nome" class="block text-sm font-medium text-red-600">
-          Nome é obrigatório e deve ter pelo menos 3 caracteres.
-        </label>
-      } @else {
-        <label for="nome" class="block text-sm font-medium text-gray-700">Nome</label>
-      }
+    <div *ngFor="let field of formFields">
+      <label [ngClass]="getLabelClass(field)" [for]="field">
+        {{ getErrorMessage(field) || fieldLabels[field] }}
+      </label>
 
-      <input 
-        id="nome" 
-        type="text" 
-        formControlName="name"
-        class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
-        placeholder="Digite seu nome" />
+      <ng-container [ngSwitch]="field">
+        <input *ngSwitchCase="'name'"
+          id="nome"
+          type="text"
+          [formControlName]="field"
+          placeholder="Digite seu nome"
+          class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none" />
+
+        <input *ngSwitchCase="'email'"
+          id="email"
+          type="email"
+          [formControlName]="field"
+          placeholder="Digite seu e-mail"
+          class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none" />
+
+        <input *ngSwitchCase="'telephone'"
+          id="telephone"
+          type="tel"
+          maxlength="11"
+          minlength="8"
+          [formControlName]="field"
+          placeholder="(00) 90000-0000"
+          class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none" />
+
+        <textarea *ngSwitchCase="'message'"
+          id="message"
+          rows="4"
+          [formControlName]="field"
+          placeholder="Digite sua mensagem"
+          class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"></textarea>
+      </ng-container>
     </div>
 
-    <!-- E-mail -->
-    <div>
-      @if (contactForm.get('email')?.touched && contactForm.get('email')?.invalid) {
-        <label for="email" class="block text-sm font-medium text-red-600">
-          @if (contactForm.get('email')?.errors?.['required']) {
-            E-mail é obrigatório.
-          } @else if (contactForm.get('email')?.errors?.['email']) {
-            E-mail inválido.
-          }
-        </label>
-      } @else {
-        <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
-      }
-
-      <input 
-        id="email" 
-        type="email" 
-        formControlName="email"
-        class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
-        placeholder="Digite seu e-mail" />
-    </div>
-
-    <!-- Telefone -->
-    <div>
-      @if (contactForm.get('telephone')?.touched && contactForm.get('telephone')?.invalid) {
-        <label for="telephone" class="block text-sm font-medium text-red-600">
-          Telefone deve conter apenas números.
-        </label>
-      } @else {
-        <label for="telephone" class="block text-sm font-medium text-gray-700">Telefone</label>
-      }
-
-      <input 
-        id="telephone" 
-        type="tel"
-        formControlName="telephone"
-        class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
-        placeholder="(00) 90000-0000" />
-    </div>
-
-    <!-- Mensagem -->
-    <div>
-      @if (contactForm.get('message')?.touched && contactForm.get('message')?.invalid) {
-        <label for="message" class="block text-sm font-medium text-red-600">
-          @if (contactForm.get('message')?.errors?.['required']) {
-            Mensagem é obrigatória.
-          } @else if (contactForm.get('message')?.errors?.['maxlength']) {
-            A mensagem pode ter no máximo 500 caracteres.
-          }
-        </label>
-      } @else {
-        <label for="message" class="block text-sm font-medium text-gray-700">Mensagem</label>
-      }
-
-      <textarea 
-        id="message" 
-        formControlName="message"
-        rows="4"
-        class="placeholder:text-gray-400 w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-color4 focus:outline-none"
-        placeholder="Digite sua mensagem"></textarea>
-    </div>
-
-    <!-- Botão -->
     <button
       type="submit"
       [disabled]="contactForm.invalid"
-      class="w-full bg-color2 text-white py-2 px-4 rounded-full hover:bg-color1 transition-all font-semibold"
-    >
+      class="cursor-pointer w-full bg-color2 text-white py-2 px-4 rounded-full disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed hover:bg-color1 transition-all font-semibold">
       Enviar
     </button>
 

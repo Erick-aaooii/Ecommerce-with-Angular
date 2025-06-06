@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Config } from '../../db/ConfigOPtions';
 import { CartService } from '../../services/Cart.service';
-import { ContactServiceService } from '../../services/ContactService.service';
+import { ContactServiceService } from '../../services/Contact.service';
 import { AuthService } from '../../services/Auth.service';
 
 @Component({
