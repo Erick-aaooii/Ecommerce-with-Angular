@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-    --color-color1: #40030E;
-    --color-color2: #A68188;
-    --color-color3: #BFA8AD;
-    --color-color4: #733444;
-    --color-color5: #F2EEEB;
+  --color-color1: #a17053;  /* cor para texto */
+  --color-color2: #b2927d;  /* botões e titulos */
+  --color-color3: #e6d3c0;  /* alguns titulos */
+  --color-color4: #d7c2a0;  /* subtitulos */
+  --color-color5: #f1e8e3;  /* Rosa blush suave (fundo principal) */
 
-    --animate-fade-in-scale: fade-in-scale 0.3s ease-out;
+  --animate-fade-in-scale: fade-in-scale 0.3s ease-out;
 
-    @keyframes fade-in-scale {
-      0% {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
+  @keyframes fade-in-scale {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
     }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
